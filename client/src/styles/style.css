@@ -3,14 +3,12 @@
   font-family: Arial, sans-serif;
 }
 
- .dash{
+.dash {
   text-align: center;
   background-color: blue;
   border-radius: 1vh;
   color: white;
- }
-
-
+}
 
 select,
 input[type="text"] {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles/style.css'; // Import your global styles
+import './styles/style.css'; 
 import TransactionTable from './components/TransactionsTable';
 import StatisticsBox from './components/StatisticsBox';
 import BarChart from './components/BarChart';
