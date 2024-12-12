@@ -1,6 +1,13 @@
-// src/components/StatisticsBox.js
-
 import React from 'react';
+
+
+// Utility function for formatting currency
+const formatCurrency = (amount) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(amount);
+};
 
 const StatisticsBox = ({ statistics = {} }) => {
   const {
@@ -10,11 +17,17 @@ const StatisticsBox = ({ statistics = {} }) => {
   } = statistics;
 
   return (
-    <div className='Statics-data'>
+    <div className="statics-data">
       <h3>Statistics</h3>
-      <div className='statics'>Total Sale : {totalAmount}</div>
-      <div className='statics'>Total Sold Items: {totalItemsSold}</div>
-      <div className='statics'>Total Not Sold Items: {totalItemsNotSold}</div>
+      <div className="statics">
+        <strong>Total Sale:</strong> {formatCurrency(totalAmount)}
+      </div>
+      <div className="statics">
+        <strong>Total Sold Items:</strong> {totalItemsSold}
+      </div>
+      <div className="statics">
+        <strong>Total Not Sold Items:</strong> {totalItemsNotSold}
+      </div>
     </div>
   );
 };

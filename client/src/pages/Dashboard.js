@@ -13,15 +13,30 @@ const Dashboard = () => {
   const [page, setPage] = useState(1);
   const [perPage] = useState(10);
   const [statistics, setStatistics] = useState({});
+  const [loading, setLoading] = useState(true); // Loading state
 
+  // Fetch statistics when the selected month changes or search query changes
   useEffect(() => {
     const loadStatistics = async () => {
-      const data = await fetchStatistics(selectedMonth);
-      setStatistics(data);
+      setLoading(true); // Set loading to true when data is being fetched
+      try {
+        const data = await fetchStatistics(selectedMonth);
+        console.log('Fetched statistics:', data);
+        setStatistics(data.data);
+      } catch (error) {
+        console.error('Error fetching statistics:', error);
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched
+      }
     };
 
     loadStatistics();
-  }, [selectedMonth]);
+  }, [selectedMonth, searchQuery]); // Trigger when selectedMonth or searchQuery changes
+  
+  if (loading) {
+    return <div>Loading statistics...</div>;
+  }
+
 
   return (
     <div className="dashboard">
@@ -34,7 +49,11 @@ const Dashboard = () => {
       <SearchBox searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
       {/* Transaction Statistics */}
-      <StatisticsBox statistics={statistics} />
+      {loading ? (
+        <div>Loading statistics...</div> // Show loading indicator while statistics are being fetched
+      ) : (
+        <StatisticsBox statistics={statistics} />
+      )}
 
       {/* Transaction Table */}
       <TransactionTable
