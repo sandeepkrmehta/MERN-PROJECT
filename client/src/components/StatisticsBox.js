@@ -1,11 +1,10 @@
-import React from 'react';
-
+import React from "react";
 
 // Utility function for formatting currency
 const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(amount);
 };
 
@@ -17,20 +16,26 @@ const StatisticsBox = ({ statistics = {} }) => {
   } = statistics;
 
   return (
-    <div className="statics-data">
-      <h3>Statistics</h3>
-      <div className="statics">
-        <strong>Total Sale:</strong> {formatCurrency(totalAmount)}
+    <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-lg mx-auto">
+      <h3 className="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">
+        Statistics
+      </h3>
+      <div className="flex justify-between items-center py-2">
+        <span className="text-gray-500">Total Sale:</span>
+        <span className="font-medium text-gray-800">
+          {formatCurrency(totalAmount)}
+        </span>
       </div>
-      <div className="statics">
-        <strong>Total Sold Items:</strong> {totalItemsSold}
+      <div className="flex justify-between items-center py-2">
+        <span className="text-gray-500">Total Sold Items:</span>
+        <span className="font-medium text-gray-800">{totalItemsSold}</span>
       </div>
-      <div className="statics">
-        <strong>Total Not Sold Items:</strong> {totalItemsNotSold}
+      <div className="flex justify-between items-center py-2">
+        <span className="text-gray-500">Total Not Sold Items:</span>
+        <span className="font-medium text-gray-800">{totalItemsNotSold}</span>
       </div>
     </div>
   );
 };
-
 
 export default StatisticsBox;
